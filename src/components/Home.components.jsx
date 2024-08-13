@@ -1,6 +1,6 @@
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const recExercises = [
@@ -10,6 +10,21 @@ const Home = () => {
     "Bent-Over",
     "Bicep Curl",
   ];
+
+  // Display Time
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Format of the date and times
+  const formattedDate = currentDateTime.toLocaleDateString();
+  const formattedTime = currentDateTime.toLocaleTimeString();
 
   const [activeTab, setActiveTab] = useState("view");
 
@@ -22,7 +37,9 @@ const Home = () => {
   return (
     <div className="App">
       <div className="date">
-        <h3>08/05/2024 - Monday </h3>
+        <h3>
+          {formattedDate} - {formattedTime}{" "}
+        </h3>
       </div>
       <div className="switcher">
         <div
