@@ -1,6 +1,7 @@
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Logger from "./JotDown.component";
 
 const Home = () => {
   const recExercises = [
@@ -34,6 +35,13 @@ const Home = () => {
 
   let navigate = useNavigate();
 
+  // Weight Value Change
+  const [weightValue, setWeightValue] = useState("");
+
+  const handleWeightChange = (event) => {
+    setWeightValue(event.target.value);
+  };
+
   return (
     <div className="App">
       <div className="date">
@@ -60,12 +68,12 @@ const Home = () => {
           <div>
             <div className="jot-button">
               <span>Feel like doing a lift?</span>
-              <button onClick={() => navigate("/logger")}>
+              <button className="button-19" onClick={() => navigate("/logger")}>
                 Jot Down The Workout
               </button>
             </div>
+            <h2>Recommended Exercises Today</h2>
             <div className="rec-exercise-main">
-              <h2>Recommended Exercises Today</h2>
               {recExercises.map((item) => (
                 <div className="row-1">
                   <div className="rec-exercise">
@@ -79,6 +87,8 @@ const Home = () => {
         {activeTab === "summary" && (
           <div className="summary-details">
             <h2>This is the summary for all workout</h2>
+
+            <p>Weight input: {weightValue}</p>
           </div>
         )}
       </div>

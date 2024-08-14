@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./JotDown.css";
 
-export default function Logger() {
+export default function Logger({ weightValue, onWeightChange }) {
   const [typeValue, setTypeValue] = useState("");
   const [exerciseValue, setExerciseValue] = useState("");
   const [repValue, setRepValue] = useState(0);
   const [sepValue, setSepValue] = useState(0);
+  // const [weightValue, setWeightValue] = useState(0);
 
   const handleTypeChange = (event) => {
     setTypeValue(event.target.value);
@@ -17,6 +18,10 @@ export default function Logger() {
       `Type selected: ${typeValue} and selected exercise is ${event.target.value}`
     );
   };
+
+  // const handleWeightChange = (event) => {
+  //   setWeightValue(event.target.value);
+  // };
 
   const exerciseOptions = {
     "Upper Body": ["Bicep", "Tricep", "Shoulder", "Chest"],
@@ -69,7 +74,9 @@ export default function Logger() {
           ))}
         </select>
         <span>Rep: </span>
-        <button onClick={handleDecreaseRep}>-</button>
+        <button className="" onClick={handleDecreaseRep}>
+          -
+        </button>
         <input type="number" value={repValue} readOnly className="rep-input" />
 
         <button onClick={handleIncreaseRep}>+</button>
@@ -78,6 +85,13 @@ export default function Logger() {
         <button onClick={handleDecreaseSet}>-</button>
         <input type="number" value={sepValue} readOnly className="set-input" />
         <button onClick={handleIncreaseSet}>+</button>
+        <input
+          type="number"
+          value={weightValue}
+          onChange={onWeightChange}
+          className="lbInput"
+          placeholder="0"
+        />
       </div>
     </div>
   );
