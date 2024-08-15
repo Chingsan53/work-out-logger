@@ -4,12 +4,47 @@ import { useEffect, useState } from "react";
 import Logger from "./JotDown.component";
 
 const Home = () => {
-  const recExercises = [
-    "Bench Press",
-    "Pull-Ups",
-    "Overhead Press",
-    "Bent-Over",
-    "Bicep Curl",
+  const exercises = [
+    {
+      id: 1,
+      name: "Bench Press",
+      instruction:
+        "Bench Press - Lorem ipsum odor amet, consectetuer adipiscing elit. Integer imperdiet rhoncus fusce, phasellus aptent potenti varius. Scelerisque sapien nulla nullam euismod nisi diam erat. At tortor sociosqu pretium mattis morbi eleifend?",
+      description:
+        "Lorem ipsum odor amet, consectetuer adipiscing elit. Ad arcu quam auctor erat velit ultrices.",
+    },
+    {
+      id: 2,
+      name: "Pull-Ups",
+      instruction:
+        "Pull-Ups - Lorem ipsum odor amet, consectetuer adipiscing elit. Integer imperdiet rhoncus fusce, phasellus aptent potenti varius. Scelerisque sapien nulla nullam euismod nisi diam erat. At tortor sociosqu pretium mattis morbi eleifend?",
+      description:
+        "Lorem ipsum odor amet, consectetuer adipiscing elit. Ad arcu quam auctor erat velit ultrices.",
+    },
+    {
+      id: 3,
+      name: "Bent-Over",
+      instruction:
+        "Bent-Over - Lorem ipsum odor amet, consectetuer adipiscing elit. Integer imperdiet rhoncus fusce, phasellus aptent potenti varius. Scelerisque sapien nulla nullam euismod nisi diam erat. At tortor sociosqu pretium mattis morbi eleifend?",
+      description:
+        "Lorem ipsum odor amet, consectetuer adipiscing elit. Ad arcu quam auctor erat velit ultrices.",
+    },
+    {
+      id: 4,
+      name: "Bicep Curl",
+      instruction:
+        "Bicep Curl - Lorem ipsum odor amet, consectetuer adipiscing elit. Integer imperdiet rhoncus fusce, phasellus aptent potenti varius. Scelerisque sapien nulla nullam euismod nisi diam erat. At tortor sociosqu pretium mattis morbi eleifend?",
+      description:
+        "Lorem ipsum odor amet, consectetuer adipiscing elit. Ad arcu quam auctor erat velit ultrices.",
+    },
+    {
+      id: 5,
+      name: "Overhead Press",
+      instruction:
+        "Overhead Press - Lorem ipsum odor amet, consectetuer adipiscing elit. Integer imperdiet rhoncus fusce, phasellus aptent potenti varius. Scelerisque sapien nulla nullam euismod nisi diam erat. At tortor sociosqu pretium mattis morbi eleifend?",
+      description:
+        "Lorem ipsum odor amet, consectetuer adipiscing elit. Ad arcu quam auctor erat velit ultrices.",
+    },
   ];
 
   // Display Time
@@ -40,6 +75,11 @@ const Home = () => {
 
   const handleWeightChange = (event) => {
     setWeightValue(event.target.value);
+  };
+
+  // Displaying the detail of each exercise
+  const handleExerciseClick = (exerciseId) => {
+    navigate(`/exercises/${exerciseId}`);
   };
 
   return (
@@ -74,10 +114,14 @@ const Home = () => {
             </div>
             <h2>Recommended Exercises Today</h2>
             <div className="rec-exercise-main">
-              {recExercises.map((item) => (
-                <div className="row-1">
+              {exercises.map((exercise) => (
+                <div
+                  key={exercise.id}
+                  className="row-1"
+                  onClick={() => handleExerciseClick(exercise.id)}
+                >
                   <div className="rec-exercise">
-                    <span>{item}</span>
+                    <span>{exercise.name}</span>
                   </div>
                 </div>
               ))}

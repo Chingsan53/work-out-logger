@@ -1,14 +1,19 @@
 import "./App.css";
-import { Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home.components";
+import ExerciseDetail from "./components/ExerciseDetail.components";
 import Logger from "./components/JotDown.component";
+import { ExerciseProvider } from "./components/exerciseContext";
 
 function App() {
   return (
-    <Routes>
-      <Route exact path="/" Component={Home} />
-      <Route path="/logger" Component={Logger} />
-    </Routes>
+    <ExerciseProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/exercises/:exerciseId" element={<ExerciseDetail />} />
+        <Route path="/logger" element={<Logger />} />
+      </Routes>
+    </ExerciseProvider>
   );
 }
 
