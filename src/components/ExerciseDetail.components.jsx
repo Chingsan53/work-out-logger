@@ -1,10 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useExercises } from "./exerciseContext";
 
 const ExerciseDetail = () => {
   const { exerciseId } = useParams();
   const exercises = useExercises();
   const exercise = exercises.find((e) => e.id === parseInt(exerciseId, 10));
+
+  //Back button
+  let navigate = useNavigate();
 
   if (!exercise) return <div>Exercise not found</div>;
   return (
@@ -19,6 +22,9 @@ const ExerciseDetail = () => {
         <strong>Instruction: </strong>
         {exercise.instruction}
       </p>
+      <button onClick={() => navigate(-1)} className="button-19">
+        Back
+      </button>
     </div>
   );
 };

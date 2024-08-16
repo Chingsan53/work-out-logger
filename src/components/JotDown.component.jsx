@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./JotDown.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Logger({ weightValue, onWeightChange }) {
   const [typeValue, setTypeValue] = useState("");
@@ -48,6 +49,9 @@ export default function Logger({ weightValue, onWeightChange }) {
     if (sepValue > 1) setSepValue(sepValue - 1);
   };
 
+  //Back Button
+  const navigate = useNavigate();
+
   return (
     <div className="App">
       <div className="jot-down-title">
@@ -93,6 +97,9 @@ export default function Logger({ weightValue, onWeightChange }) {
           placeholder="0"
         />
       </div>
+      <button onClick={() => navigate(-1)} className="button-19">
+        Back
+      </button>
     </div>
   );
 }

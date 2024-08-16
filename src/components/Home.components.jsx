@@ -82,6 +82,8 @@ const Home = () => {
     navigate(`/exercises/${exerciseId}`);
   };
 
+  // Displaying the log in and sign up
+
   return (
     <div className="App">
       <div className="date">
@@ -115,12 +117,12 @@ const Home = () => {
             <h2>Recommended Exercises Today</h2>
             <div className="rec-exercise-main">
               {exercises.map((exercise) => (
-                <div
-                  key={exercise.id}
-                  className="row-1"
-                  onClick={() => handleExerciseClick(exercise.id)}
-                >
-                  <div className="rec-exercise">
+                <div className="row-1">
+                  <div
+                    key={exercise.id}
+                    className="rec-exercise"
+                    onClick={() => handleExerciseClick(exercise.id)}
+                  >
                     <span>{exercise.name}</span>
                   </div>
                 </div>
