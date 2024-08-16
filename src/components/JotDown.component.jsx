@@ -151,9 +151,7 @@ export default function Logger({ weightValue, onWeightChange }) {
           -
         </button>
         <input type="number" value={repValue} readOnly className="rep-input" />
-
         <button onClick={handleIncreaseRep}>+</button>
-
         <span>Set: </span>
         <button onClick={handleDecreaseSet}>-</button>
         <input type="number" value={sepValue} readOnly className="set-input" />
@@ -164,7 +162,8 @@ export default function Logger({ weightValue, onWeightChange }) {
           onChange={onWeightChange}
           className="lbInput"
           placeholder="0"
-        />
+        />{" "}
+        <span>Lbs</span>
       </div>
       <button onClick={() => navigate(-1)} className="button-19">
         Back
