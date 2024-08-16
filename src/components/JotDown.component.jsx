@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./JotDown.css";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Logger({ weightValue, onWeightChange }) {
   const [typeValue, setTypeValue] = useState("");
@@ -118,8 +119,14 @@ export default function Logger({ weightValue, onWeightChange }) {
     if (sepValue > 1) setSepValue(sepValue - 1);
   };
 
-  //Back Button
+  //Back Button Motion Back Button
   const navigate = useNavigate();
+
+  const buttonVariants = {
+    initial: { opacity: 0, x: -100 },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, x: 100, transition: { duration: 0.5 } },
+  };
 
   return (
     <div className="App">
@@ -165,9 +172,16 @@ export default function Logger({ weightValue, onWeightChange }) {
         />{" "}
         <span>Lbs</span>
       </div>
-      <button onClick={() => navigate(-1)} className="button-19">
+      <motion.button
+        className="button-28"
+        variants={buttonVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        onClick={() => navigate(-1)}
+      >
         Back
-      </button>
+      </motion.button>
     </div>
   );
 }
