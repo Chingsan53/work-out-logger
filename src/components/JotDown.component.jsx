@@ -25,16 +25,84 @@ export default function Logger({ weightValue, onWeightChange }) {
   // };
 
   const exerciseOptions = {
-    "Upper Body": ["Bicep", "Tricep", "Shoulder", "Chest"],
-    "Lower Body": ["Squat", "Leg Press", "Lunge"],
-    "Cardio Exercise": ["Running", "Cycling", "Rope Jump"],
-    "Full Body": ["Burpee", "Deadlift", "Clean and Press"],
+    "Upper Body": [
+      "Bicep",
+      "Tricep",
+      "Shoulder",
+      "Chest Press",
+      "Bench Press",
+      "Pull-Up",
+      "Push-Up",
+      "Lat Pulldown",
+      "Bent-Over Row",
+      "Overhead Tricep Extension",
+      "Incline Bench Press",
+      "Dumbbell Fly",
+      "Arnold Press",
+      "Front Raise",
+      "Lateral Raise",
+      "Hammer Curl",
+      "Skull Crusher",
+    ],
+    "Lower Body": [
+      "Squat",
+      "Leg Press",
+      "Lunge",
+      "Deadlift",
+      "Leg Curl",
+      "Leg Extension",
+      "Calf Raise",
+      "Glute",
+      "Glute Bridge",
+      "Step-Up",
+      "Bulgarian Split Squat",
+      "Hip Thrust",
+      "Sumo Squat",
+      "Hack Squat",
+      "Box Jump",
+      "Romanian Deadlift",
+    ],
+    "Cardio Exercise": [
+      "Running",
+      "Cycling",
+      "Rope Jump",
+      "Rowing",
+      "Swimming",
+      "Elliptical",
+      "Stair Climber",
+      "HIIT Spritns",
+      "Jumping Jacks",
+      "Burpees",
+      "Mountain Climbers",
+      "Boxing",
+      "Shadowboxing",
+      "Speed Skaters",
+      "High Knees",
+    ],
+    "Full Body": [
+      "Burpee",
+      "Deadlift",
+      "Clean and Press",
+      "Clean and Press",
+      "Kettlebell Swing",
+      "Thruster",
+      "Turkish Get-Up",
+      "Medicine Ball Slam",
+      "Battle Ropes",
+      "Man Maker",
+      "Snatch",
+      "Farmer's Walk",
+      "Power Clean",
+      "Sled Push/Pull",
+      "Wall Ball",
+    ],
   };
 
   const filteredExercises = exerciseOptions[typeValue] || [];
 
   const handleIncreaseRep = () => {
     setRepValue(repValue + 1);
+    if (repValue > 20) setRepValue(0);
   };
 
   const handleDecreaseRep = () => {
@@ -43,6 +111,7 @@ export default function Logger({ weightValue, onWeightChange }) {
 
   const handleIncreaseSet = () => {
     setSepValue(sepValue + 1);
+    if (sepValue > 9) setSepValue(0);
   };
 
   const handleDecreaseSet = () => {
