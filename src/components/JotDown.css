@@ -106,3 +106,10 @@
   box-shadow: none;
   transform: translateY(0);
 }
+
+/* Input Boxes */
+
+.rep-input, .set-input{
+  height: auto;
+  width: 29px;
+}
