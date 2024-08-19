@@ -26,7 +26,7 @@ export default function Logger({ weightValue, onWeightChange }) {
   // };
 
   const exerciseOptions = {
-    "Upper Body": [
+    Core: [
       "Bicep",
       "Tricep",
       "Shoulder",
@@ -45,7 +45,7 @@ export default function Logger({ weightValue, onWeightChange }) {
       "Hammer Curl",
       "Skull Crusher",
     ],
-    "Lower Body": [
+    Arms: [
       "Squat",
       "Leg Press",
       "Lunge",
@@ -63,7 +63,7 @@ export default function Logger({ weightValue, onWeightChange }) {
       "Box Jump",
       "Romanian Deadlift",
     ],
-    "Cardio Exercise": [
+    Back: [
       "Running",
       "Cycling",
       "Rope Jump",
@@ -80,7 +80,92 @@ export default function Logger({ weightValue, onWeightChange }) {
       "Speed Skaters",
       "High Knees",
     ],
+    Chest: [
+      "Burpee",
+      "Deadlift",
+      "Clean and Press",
+      "Clean and Press",
+      "Kettlebell Swing",
+      "Thruster",
+      "Turkish Get-Up",
+      "Medicine Ball Slam",
+      "Battle Ropes",
+      "Man Maker",
+      "Snatch",
+      "Farmer's Walk",
+      "Power Clean",
+      "Sled Push/Pull",
+      "Wall Ball",
+    ],
+    Legs: [
+      "Burpee",
+      "Deadlift",
+      "Clean and Press",
+      "Clean and Press",
+      "Kettlebell Swing",
+      "Thruster",
+      "Turkish Get-Up",
+      "Medicine Ball Slam",
+      "Battle Ropes",
+      "Man Maker",
+      "Snatch",
+      "Farmer's Walk",
+      "Power Clean",
+      "Sled Push/Pull",
+      "Wall Ball",
+    ],
+    Shoulders: [
+      "Burpee",
+      "Deadlift",
+      "Clean and Press",
+      "Clean and Press",
+      "Kettlebell Swing",
+      "Thruster",
+      "Turkish Get-Up",
+      "Medicine Ball Slam",
+      "Battle Ropes",
+      "Man Maker",
+      "Snatch",
+      "Farmer's Walk",
+      "Power Clean",
+      "Sled Push/Pull",
+      "Wall Ball",
+    ],
+    Other: [
+      "Burpee",
+      "Deadlift",
+      "Clean and Press",
+      "Clean and Press",
+      "Kettlebell Swing",
+      "Thruster",
+      "Turkish Get-Up",
+      "Medicine Ball Slam",
+      "Battle Ropes",
+      "Man Maker",
+      "Snatch",
+      "Farmer's Walk",
+      "Power Clean",
+      "Sled Push/Pull",
+      "Wall Ball",
+    ],
     "Full Body": [
+      "Burpee",
+      "Deadlift",
+      "Clean and Press",
+      "Clean and Press",
+      "Kettlebell Swing",
+      "Thruster",
+      "Turkish Get-Up",
+      "Medicine Ball Slam",
+      "Battle Ropes",
+      "Man Maker",
+      "Snatch",
+      "Farmer's Walk",
+      "Power Clean",
+      "Sled Push/Pull",
+      "Wall Ball",
+    ],
+    Cardio: [
       "Burpee",
       "Deadlift",
       "Clean and Press",
@@ -132,16 +217,22 @@ export default function Logger({ weightValue, onWeightChange }) {
     <div className="App">
       <div className="jot-down-title">
         <h2>Jot Down Your Workout</h2>
-        <span>Type: </span>
+        <span> Body Part: </span>
         <select value={typeValue} onChange={handleTypeChange}>
           <option value="" disabled>
             Select Type
           </option>
-          <option value="Upper Body">Upper Body</option>
-          <option value="Lower Body">Lower Body</option>
-          <option value="Cardio Exercise">Cardio</option>
+          <option value="Core">Core</option>
+          <option value="Arms">Arms</option>
+          <option value="Back">Back</option>
+          <option value="Chest">Chest</option>
+          <option value="Legs">Legs</option>
+          <option value="Shoulders">Shoulders</option>
+          <option value="Other">Other</option>
           <option value="Full Body">Full Body</option>
+          <option value="Cardio">Cardio</option>
         </select>
+        <p></p>
         <span>Exercise: </span>
         <select value={exerciseValue} onChange={handleExerciseChange}>
           <option value="" disabled>
@@ -153,16 +244,14 @@ export default function Logger({ weightValue, onWeightChange }) {
             </option>
           ))}
         </select>
-        <span>Rep: </span>
+        <p>Set 1: </p>
+        <span>Reps: </span>
         <button className="" onClick={handleDecreaseRep}>
           -
         </button>
         <input type="number" value={repValue} readOnly className="rep-input" />
         <button onClick={handleIncreaseRep}>+</button>
-        <span>Set: </span>
-        <button onClick={handleDecreaseSet}>-</button>
-        <input type="number" value={sepValue} readOnly className="set-input" />
-        <button onClick={handleIncreaseSet}>+</button>
+        <span>Lbs</span>
         <input
           type="number"
           value={weightValue}
@@ -170,7 +259,6 @@ export default function Logger({ weightValue, onWeightChange }) {
           className="lbInput"
           placeholder="0"
         />{" "}
-        <span>Lbs</span>
       </div>
       <motion.button
         className="button-28"
