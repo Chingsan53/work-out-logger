@@ -257,7 +257,7 @@ export default function Logger() {
               readOnly
               className="rep-input"
             />
-            <button onClick={() => handleIncreaseRep(index)}>+</button>
+            <button onClick={() => handleIncreaseRep(index)}>+</button> <p></p>
             <span>Lbs</span>{" "}
             <input
               type="number"
