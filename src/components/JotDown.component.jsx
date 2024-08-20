@@ -3,12 +3,12 @@ import "./JotDown.css";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-export default function Logger({ weightValue, onWeightChange }) {
+export default function Logger() {
   const [typeValue, setTypeValue] = useState("");
   const [exerciseValue, setExerciseValue] = useState("");
   const [repValue, setRepValue] = useState(0);
-  const [sepValue, setSepValue] = useState(0);
-  // const [weightValue, setWeightValue] = useState(0);
+
+  const [sets, setSets] = useState([{ reps: 0, weight: 0 }]);
 
   const handleTypeChange = (event) => {
     setTypeValue(event.target.value);
@@ -21,9 +21,7 @@ export default function Logger({ weightValue, onWeightChange }) {
     );
   };
 
-  // const handleWeightChange = (event) => {
-  //   setWeightValue(event.target.value);
-  // };
+  // Handle the increase set
 
   const exerciseOptions = {
     Core: [
@@ -186,22 +184,26 @@ export default function Logger({ weightValue, onWeightChange }) {
 
   const filteredExercises = exerciseOptions[typeValue] || [];
 
-  const handleIncreaseRep = () => {
-    setRepValue(repValue + 1);
-    if (repValue > 20) setRepValue(0);
+  const handleIncreaseRep = (index) => {
+    const newSets = [...sets];
+    newSets[index].reps += 1;
+    setSets(newSets);
   };
 
-  const handleDecreaseRep = () => {
-    if (repValue > 1) setRepValue(repValue - 1);
+  const handleDecreaseRep = (index) => {
+    const newSets = [...sets];
+
+    if (newSets[index].reps > 0) newSets[index].reps -= 1;
   };
 
-  const handleIncreaseSet = () => {
-    setSepValue(sepValue + 1);
-    if (sepValue > 9) setSepValue(0);
+  const onWeightChange = (index, event) => {
+    const newSets = [...sets];
+    newSets[index].weight = event.target.value;
+    setSets(newSets);
   };
 
-  const handleDecreaseSet = () => {
-    if (sepValue > 1) setSepValue(sepValue - 1);
+  const addSet = () => {
+    setSets([...sets, { reps: 0, weight: 0 }]);
   };
 
   //Back Button Motion Back Button
@@ -244,23 +246,31 @@ export default function Logger({ weightValue, onWeightChange }) {
             </option>
           ))}
         </select>
-        <p>Set 1: </p>
-        <span>Reps: </span>
-        <button className="" onClick={handleDecreaseRep}>
-          -
-        </button>
-        <input type="number" value={repValue} readOnly className="rep-input" />
-        <button onClick={handleIncreaseRep}>+</button>
-        <span>Lbs</span>
-        <input
-          type="number"
-          value={weightValue}
-          onChange={onWeightChange}
-          className="lbInput"
-          placeholder="0"
-        />{" "}
+        {sets.map((set, index) => (
+          <div key={index}>
+            <p>Set {index + 1}: </p>
+            <span>Reps: </span>
+            <button onClick={() => handleDecreaseRep(index)}>-</button>
+            <input
+              type="number"
+              value={set.reps}
+              readOnly
+              className="rep-input"
+            />
+            <button onClick={() => handleIncreaseRep(index)}>+</button>
+            <span>Lbs</span>{" "}
+            <input
+              type="number"
+              value={set.weight}
+              onChange={(e) => onWeightChange(index, e)}
+              className="lbInput"
+              placeholder="0"
+            />
+          </div>
+        ))}
       </div>
-      <motion.button
+      <button onClick={addSet}>+ Add Set</button>
+      {/* <motion.button
         className="button-28"
         variants={buttonVariants}
         initial="initial"
@@ -269,7 +279,7 @@ export default function Logger({ weightValue, onWeightChange }) {
         onClick={() => navigate(-1)}
       >
         Back
-      </motion.button>
+      </motion.button> */}
     </div>
   );
 }
